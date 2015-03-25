@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Mon Mar 16 16:00:57 2015 Bertrand-Rapello Baptiste
-// Last update Mon Mar 16 17:18:16 2015 Bertrand-Rapello Baptiste
+// Last update Thu Mar 19 15:31:50 2015 Bertrand-Rapello Baptiste
 //
 
 #include "Nibbler.hh"
@@ -22,6 +22,14 @@ Nibbler::~Nibbler()
 
 void Nibbler::playTheGame()
 {
+  int	c = 0;
+
+  while (c < 5)
+    {
+      _lib->getEvent();
+      _lib->refresh();
+      c++;
+    }
 	
 }
 

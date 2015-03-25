@@ -13,11 +13,13 @@ NAMELIBTEST = lib_de_test.so
 
 OBJ = $(SRC:.cpp=.o)
 
+OBJLIB = $(SRCLIBDETEST:.cpp=.o)
+
 all: $(NAME)
 
-$(NAME): $(OBJ)
+$(NAME): $(OBJ) 
 	g++ -o $(NAME) $(OBJ) -ldl
-	g++ -o $(NAMELIBTEST) $(SRCLIBTEST) -shared -fPIC -ldl 
+	g++ -o $(NAMELIBTEST) $(SRCLIBTEST) -shared -fPIC -ldl -lncurses
 
 clean:
 	rm -rf $(OBJ)
