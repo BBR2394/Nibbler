@@ -22,7 +22,10 @@ int	main(int ac, char **av)
   }
   try
     {
-      nib.loadLibrary(av[1]);
+      nib.prepareTheGame(av[1], 25, 15);
+      nib.playTheGame();
+      nib.endGame();
+      return 0;
     }
   catch (const ExceptLoad& e)
     {

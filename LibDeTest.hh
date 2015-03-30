@@ -16,13 +16,10 @@
 
 #include "IDisplayModule.hh"
 
-enum eDir
-  {
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT
-  };
+#define CHARHEAD "$"
+#define CHARBODY "b"
+#define CHARTAIL "+"
+
 
 class LibDeTest : public IDisplayModule
 {
@@ -33,14 +30,19 @@ public:
 private:
   std::string _name;
   WINDOW *_win;
+  int _rowMax;
+  int _colMax;
   int _cmdPress;
 public:
   std::string const & getName() const;
-  void init();
+  void init(int , int );
   void stop();
-  int getEvent();
-  int refresh();
-  int drawGame();
+  t_dir getEvent();
+  int refreshScreen();
+  int drawGame(int , int, t_type);
+  void moveSnake();
+  void createWin(int , int );
+  int timeToWait(int);
 };
 
 #endif

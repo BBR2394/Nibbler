@@ -11,6 +11,8 @@
 #ifndef NIBBLER_HH_
 # define NIBBLER_HH_
 
+#include <iostream>
+#include <list>
 #include "IDisplayModule.hh"
 #include "DLLoader.hh"
 #include "ExceptionNibbler.hh"
@@ -23,10 +25,18 @@ public:
 
 private:
 	IDisplayModule *_lib;
+	std::list<Objet*> _snake;
+	std::list<Objet*> _food;
+	int _x;
+	int _y;
 
 public:
  	void loadLibrary(char *name);
 	void playTheGame();
+	void callDraw();
+	void prepareTheGame(char *, int , int );
+	void moveSnake(t_dir);
+	void endGame();
 };
 
 #endif

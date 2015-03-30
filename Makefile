@@ -3,7 +3,8 @@
 SRC =	main.cpp \
 	Nibbler.cpp \
 	ExceptionNibbler.cpp \
-	DLLoader.cpp 
+	DLLoader.cpp \
+	Objet.cpp
 
 NAME = nibbler
 

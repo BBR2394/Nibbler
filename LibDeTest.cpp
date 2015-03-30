@@ -24,42 +24,102 @@ LibDeTest::~LibDeTest()
 
 }
 
-void LibDeTest::init()
+/*
+** x -> columns
+** y -> lines
+*/
+
+void LibDeTest::createWin(int x, int y)
+{
+  _win = newwin(y, x, 0, 0);
+  if (_win == NULL)
+    throw ("problem when create the window");
+  box(_win, 0, 0);
+  wrefresh(_win);
+  refresh();
+}
+
+void LibDeTest::init(int x, int y)
 {
   std::cout << "initialisation de la lib de test avec ncurses" << std::endl;
   initscr();
+  getmaxyx(stdscr, _rowMax, _colMax);
+  std::cout << "les ligne du terminal" << _rowMax << "les colonne " << _colMax << std::endl;
+  //printw("les ligne %d et les colone %d\n", _rowMax, _colMax);
   cbreak(); /*ctrl-C not caught */
+  //a remettre
   noecho(); /*dont print the char when press */
-  //_win = 
+  refresh();
+  keypad(stdscr, TRUE);
+  this->createWin(x, y);
+  getch();
 }
 
 void LibDeTest::stop()
 {
-  std::cout << "arret de la lib de test" << std::endl;
-  echo();
+  //echo();
+  delwin(_win);
   endwin();
 }
 
 std::string const & LibDeTest::getName() const
 {
-	std::cout << "bonjour !!! de get Name" << std::endl;
+  static int c = 0;
+	mvwprintw(_win, 10, 10+c, "bonjour!!");
+  c++;
 }
 
-int LibDeTest::getEvent()
+t_dir LibDeTest::getEvent()
 {
+  int ch = 0;
 
-  std::cout << "je recupere un evenement" << std::endl;
-  getch();
-  return 4;
+  ch = getch();
+  if (ch == 258)
+    return UP;
+  else if (ch == 260)
+    return LEFT;
+  else if (ch == 261)
+    return RIGHT;
+  else if (ch == 259)
+    return DOWN;
+  else if (ch == 27)
+    {
+      this->stop();
+        //a enlever
+      /*exit(0);*/
+      return END;
+    }
+  else
+   return NOTHING;
+  
+  //ch = getch();
+  //refresh();
+  //return ch;
 }
 
-int LibDeTest::refresh()
+int LibDeTest::refreshScreen()
 {
-  std::cout << "je refresh" << std::endl;
-  return 3;
+  werase(_win);
+  box(_win, 0, 0);
+  wrefresh(_win);
+  refresh();
+  return 0;
 }
 
-int LibDeTest::drawGame()
+int LibDeTest::drawGame(int x, int y, t_type tp)
 {
-  std::cout << "je dessine " << std::endl;
+  if (tp == HEAD)
+    mvwprintw(_win, y+1, x+1, CHARHEAD);
+  else if (tp == BODY)
+    mvwprintw(_win, y+1, x+1, CHARBODY);
+  else if (tp == TAIL)
+    mvwprintw(_win, y+1, x+1, CHARTAIL);
+  else
+    mvwprintw(_win, y+1, x+1, "5");
+  wrefresh(_win);
+}
+
+int LibDeTest::timeToWait(int sec)
+{
+  timeout(sec);
 }
