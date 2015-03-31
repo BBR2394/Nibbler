@@ -29,14 +29,15 @@ typedef enum 					e_dir
 class 							IDisplayModule
 {
 public:
-  virtual 						~IDisplayModule() {}
-  virtual std::string const 	&getName() const = 0;
-  virtual void 					init(int, int) = 0;
-  virtual void 					stop() = 0;
-  virtual t_dir					getEvent() = 0;
-  virtual int 					refreshScreen() = 0;
-  virtual int 					drawGame(int, int, t_type) = 0;
-  virtual int 					timeToWait(int) = 0;
-};
+  virtual ~IDisplayModule() {}
+  virtual std::string const & getName() const = 0;
+  virtual void init(int, int) = 0;
+  virtual void stop() = 0;
+  virtual t_dir getEvent() = 0;
+  virtual int refreshScreen() = 0;
+  virtual int drawGame(int, int, t_type) = 0;
+  virtual int timeToWait(int) = 0;
 
+  virtual void printSomething(const std::string & str) = 0;
+};
 #endif

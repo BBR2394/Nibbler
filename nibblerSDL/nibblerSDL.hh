@@ -5,7 +5,7 @@
 // Login   <schric_a@epitech.eu>
 //
 // Started on  Mon Mar 30 14:46:25 2015 Adrien Schricke
-// Last update Tue Mar 31 16:14:38 2015 Adrien Schricke
+// Last update Tue Mar 31 16:38:56 2015 Adrien Schricke
 //
 
 #ifndef         NIBBLERSDL_HH_
@@ -45,5 +45,7 @@ public:
     void moveSnake();
     void createWin(int , int );
     int timeToWait(int);
+
+    void printSomething(const std::string & str);
 };
 #endif

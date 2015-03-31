@@ -5,7 +5,7 @@
 // Login   <schric_a@epitech.eu>
 //
 // Started on  Mon Mar 30 14:44:26 2015 Adrien Schricke
-// Last update Tue Mar 31 15:50:40 2015 Adrien Schricke
+// Last update Tue Mar 31 16:39:15 2015 Adrien Schricke
 //
 
 #include "nibblerSDL.hh"
@@ -142,4 +142,9 @@ int NibblerSDL::timeToWait(int ms)
 {
     usleep(ms);
     return (0);
+}
+
+void NibblerSDL::printSomething(const std::string & str)
+{
+
 }

@@ -33,6 +33,8 @@ private:
   int _rowMax;
   int _colMax;
   int _cmdPress;
+
+  int _cursX, _cursY;
 public:
   std::string const & getName() const;
   void init(int , int );
@@ -43,6 +45,8 @@ public:
   void moveSnake();
   void createWin(int , int );
   int timeToWait(int);
+
+  void printSomething(const std::string & str);
 };
 
 #endif
