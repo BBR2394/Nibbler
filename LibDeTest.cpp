@@ -17,6 +17,9 @@ extern "C" IDisplayModule *getClass()
 
 LibDeTest::LibDeTest() : _name("LibDeTest")
 {
+  _cursX = 2;
+  _cursY = 15;
+  _cursY++;
 }
 
 LibDeTest::~LibDeTest()
@@ -52,6 +55,7 @@ void LibDeTest::init(int x, int y)
   refresh();
   keypad(stdscr, TRUE);
   this->createWin(x, y);
+  mvwprintw(stdscr, _cursY, _cursX, "BONJOUR !!");
   getch();
 }
 
@@ -122,4 +126,9 @@ int LibDeTest::drawGame(int x, int y, t_type tp)
 int LibDeTest::timeToWait(int sec)
 {
   timeout(sec);
+}
+
+void LibDeTest::printSomething(const std::string & str)
+{
+  mvwprintw(stdscr, _cursY++, _cursX, str.c_str());
 }

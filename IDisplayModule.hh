@@ -37,6 +37,8 @@ public:
   virtual int refreshScreen() = 0;
   virtual int drawGame(int, int, t_type) = 0;
   virtual int timeToWait(int) = 0;
+
+  virtual void printSomething(const std::string & str) = 0;
 };
 
 #endif 

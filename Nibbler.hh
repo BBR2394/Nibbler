@@ -24,19 +24,23 @@ public:
   ~Nibbler();
 
 private:
+	int _pts;
+	int _eaten;
 	IDisplayModule *_lib;
 	std::list<Objet*> _snake;
 	std::list<Objet*> _food;
 	int _x;
 	int _y;
 
+
 public:
  	void loadLibrary(char *name);
-	void playTheGame();
+	int playTheGame();
 	void callDraw();
 	void prepareTheGame(char *, int , int );
-	void moveSnake(t_dir);
+	int moveSnake(t_dir);
 	void endGame();
+	int checkColWithFood();
 };
 
 #endif
