@@ -1,9 +1,9 @@
 //
-// LibDeTest.cpp for  in 
-// 
+// LibDeTest.cpp for  in
+//
 // Made by Bertrand-Rapello Baptiste
 // Login   <bertra_l@epitech.net>
-// 
+//
 // Started on  Tue Mar 17 18:38:16 2015 Bertrand-Rapello Baptiste
 // Last update Tue Mar 24 19:14:45 2015 Bertrand-Rapello Baptiste
 //
@@ -67,6 +67,7 @@ std::string const & LibDeTest::getName() const
   static int c = 0;
 	mvwprintw(_win, 10, 10+c, "bonjour!!");
   c++;
+	return (this->_name);
 }
 
 t_dir LibDeTest::getEvent()
@@ -91,7 +92,7 @@ t_dir LibDeTest::getEvent()
     }
   else
    return NOTHING;
-  
+
   //ch = getch();
   //refresh();
   //return ch;
@@ -117,9 +118,11 @@ int LibDeTest::drawGame(int x, int y, t_type tp)
   else
     mvwprintw(_win, y+1, x+1, "5");
   wrefresh(_win);
+	return (0);
 }
 
 int LibDeTest::timeToWait(int sec)
 {
-  timeout(sec);
+	timeout(sec);
+	return (0);
 }

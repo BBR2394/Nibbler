@@ -1,9 +1,9 @@
 //
-// LibDeTest.hh for  in 
-// 
+// LibDeTest.hh for  in
+//
 // Made by Bertrand-Rapello Baptiste
 // Login   <bertra_l@epitech.net>
-// 
+//
 // Started on  Tue Mar 17 18:38:42 2015 Bertrand-Rapello Baptiste
 // Last update Tue Mar 24 19:15:16 2015 Bertrand-Rapello Baptiste
 //
