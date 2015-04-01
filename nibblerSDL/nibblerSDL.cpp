@@ -5,7 +5,7 @@
 // Login   <schric_a@epitech.eu>
 //
 // Started on  Mon Mar 30 14:44:26 2015 Adrien Schricke
-// Last update Wed Apr  1 15:51:22 2015 Adrien Schricke
+// Last update Wed Apr  1 16:06:41 2015 Adrien Schricke
 //
 
 #include "nibblerSDL.hh"
@@ -36,7 +36,8 @@ std::string const & NibblerSDL::getName() const
 void NibblerSDL::createWin(int x, int y)
 {
     SDL_Init(SDL_INIT_VIDEO);
-    this->win = SDL_SetVideoMode(x * (this->space + this->ox) + this->ox, y * (this->space + this->oy) + this->oy, 32, SDL_HWSURFACE);
+//    this->win = SDL_SetVideoMode(x * (this->space + this->ox) + this->ox, y * (this->space + this->oy) + this->oy, 32, SDL_HWSURFACE);
+    this->win = SDL_SetVideoMode(1000 + this->ox, 1000, 32, SDL_HWSURFACE);
     if (this->win == NULL)
       throw(SDL_GetError());
     SDL_WM_SetCaption("Nibbler - lib SDL", NULL);
@@ -166,7 +167,7 @@ int NibblerSDL::drawGame(int x, int y, t_type tp)
 
 int NibblerSDL::timeToWait(int ms)
 {
-    usleep(ms * 300);
+    usleep(ms * 10);
     return (0);
 }
 
