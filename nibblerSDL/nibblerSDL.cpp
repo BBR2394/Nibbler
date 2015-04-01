@@ -5,7 +5,7 @@
 // Login   <schric_a@epitech.eu>
 //
 // Started on  Mon Mar 30 14:44:26 2015 Adrien Schricke
-// Last update Wed Apr  1 16:06:41 2015 Adrien Schricke
+// Last update Wed Apr  1 16:13:02 2015 Adrien Schricke
 //
 
 #include "nibblerSDL.hh"
@@ -32,12 +32,10 @@ std::string const & NibblerSDL::getName() const
     return (this->name);
 }
 
-
 void NibblerSDL::createWin(int x, int y)
 {
     SDL_Init(SDL_INIT_VIDEO);
-//    this->win = SDL_SetVideoMode(x * (this->space + this->ox) + this->ox, y * (this->space + this->oy) + this->oy, 32, SDL_HWSURFACE);
-    this->win = SDL_SetVideoMode(1000 + this->ox, 1000, 32, SDL_HWSURFACE);
+    this->win = SDL_SetVideoMode(x * (this->space + this->ox) + this->ox, y * (this->space + this->oy) + this->oy, 32, SDL_HWSURFACE);
     if (this->win == NULL)
       throw(SDL_GetError());
     SDL_WM_SetCaption("Nibbler - lib SDL", NULL);
@@ -45,7 +43,7 @@ void NibblerSDL::createWin(int x, int y)
     SDL_Flip(this->win);
 }
 
-void NibblerSDL::init(int x, int y)
+int NibblerSDL::init(int x, int y)
 {
     this->x = x;
     this->y = y;
@@ -60,7 +58,7 @@ void NibblerSDL::init(int x, int y)
     this->color_tail = SDL_MapRGB(this->win->format, 0, 0, 250);
     this->color_apple = SDL_MapRGB(this->win->format, 255, 0, 0);
     this->color_back = SDL_MapRGB(this->win->format, 255, 255, 255);
-
+    return (0);
 }
 
 void NibblerSDL::stop()
@@ -167,7 +165,7 @@ int NibblerSDL::drawGame(int x, int y, t_type tp)
 
 int NibblerSDL::timeToWait(int ms)
 {
-    usleep(ms * 10);
+    usleep(ms);
     return (0);
 }
 

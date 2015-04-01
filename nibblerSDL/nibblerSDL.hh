@@ -5,7 +5,7 @@
 // Login   <schric_a@epitech.eu>
 //
 // Started on  Mon Mar 30 14:46:25 2015 Adrien Schricke
-// Last update Wed Apr  1 14:33:31 2015 Adrien Schricke
+// Last update Wed Apr  1 16:09:10 2015 Adrien Schricke
 //
 
 #ifndef         NIBBLERSDL_HH_
@@ -44,7 +44,7 @@ public:
     // a supprimer
     std::string const & getName() const;
 
-    void init(int , int );
+    int init(int , int );
     void stop();
     t_dir getEvent();
     int refreshScreen();
