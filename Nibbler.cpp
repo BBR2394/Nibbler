@@ -58,9 +58,11 @@ int Nibbler::checkColWithFood()
 		{
 			_eaten++;
 			_food.erase(itFood);
-			newX = (rand() % _x) + 1;
-			newY = (rand() % _y) + 1;
-			_food.push_front(new Objet(newY, newX, FOOD));
+			newX = (rand() % (_x-2)) ;
+			newY = (rand() % (_y-2)) ;
+			tmp1 = newX;
+			tmp2 = newY;
+			_food.push_front(new Objet(newX, newY, FOOD));
 			str += "coordonée : " ;
 			std::ostringstream convertX;
 			std::ostringstream convertY;
@@ -79,6 +81,26 @@ int Nibbler::checkColWithFood()
 
 	return 0;
 	//_eaten = 42;
+}
+
+int Nibbler::checkColWithHimself()
+{
+	std::list<Objet*>::iterator itSnake = _snake.begin();
+	Objet *head;
+	Objet *tmp;
+
+	itSnake++;
+	head = *itSnake;
+	itSnake++;
+	while (itSnake != _snake.end())
+	{
+		tmp = *itSnake;
+		if (tmp->getPosX() == head->getPosX() && tmp->getPosY() == head->getPosY())
+			return 1;
+		else
+			itSnake++;
+	}
+	return 0;
 }
 
 int Nibbler::moveSnake(t_dir dir)
@@ -113,6 +135,10 @@ int Nibbler::moveSnake(t_dir dir)
 		tmp1->setPosX(tmp1->getPosX() - 1);
 	else if (dir == DOWN)
 		tmp1->setPosY(tmp1->getPosY() - 1);
+
+	if (this->checkColWithHimself() == 1)
+		return 1;
+
 	if (tmp1->getPosY() > _y || tmp1->getPosY() < 0)
 		return 1;
 	else if (tmp1->getPosX() > _x || tmp1->getPosX() < 0)
@@ -133,6 +159,8 @@ int Nibbler::playTheGame()
     {
     	this->callDraw();
       	lastRtr = _lib->getEvent();
+      	if (lastRtr == END)
+      		return 1;
 		c++;
 		if (lastRtr == NOTHING)
 			lastRtr = staticRtr;
@@ -140,11 +168,12 @@ int Nibbler::playTheGame()
 			staticRtr = lastRtr;
 		rtrMove = this->moveSnake(lastRtr);
 
-		_lib->timeToWait(500);
+		_lib->timeToWait(50000);
       	_lib->refreshScreen();
     }
 	_lib->stop();
 	std::cout << "mange : " << _eaten << std::endl;
+	std::cout << "les coordonnée" << tmp1 << " " << tmp2 << std::endl;
 }
 
 void	Nibbler::loadLibrary(char *name)
@@ -168,7 +197,7 @@ void	Nibbler::prepareTheGame(char *name, int x, int y)
 	_snake.push_back(new Objet((x/2) - 1, y/2, BODY));
 	_snake.push_back(new Objet((x/2) - 2, y/2, BODY));
 	_snake.push_back(new Objet((x/2) - 3, y/2, TAIL));
-	_food.push_front(new Objet(3, 3, FOOD));
+	_food.push_front(new Objet(20, 10, FOOD));
 }
 
 void Nibbler::endGame()

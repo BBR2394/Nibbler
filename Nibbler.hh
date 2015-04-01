@@ -32,6 +32,8 @@ private:
 	int _x;
 	int _y;
 
+	int tmp1;
+	int tmp2;
 
 public:
  	void loadLibrary(char *name);
@@ -41,6 +43,7 @@ public:
 	int moveSnake(t_dir);
 	void endGame();
 	int checkColWithFood();
-};
+	int checkColWithHimself()
+;};
 
 #endif
