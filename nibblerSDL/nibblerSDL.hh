@@ -5,7 +5,7 @@
 // Login   <schric_a@epitech.eu>
 //
 // Started on  Mon Mar 30 14:46:25 2015 Adrien Schricke
-// Last update Tue Mar 31 16:38:56 2015 Adrien Schricke
+// Last update Wed Apr  1 14:33:31 2015 Adrien Schricke
 //
 
 #ifndef         NIBBLERSDL_HH_
@@ -29,6 +29,13 @@ private:
     int             space;
     int             ox;
     int             oy;
+    int             last_x;
+    int             last_y;
+    int             color_head;
+    int             color_body;
+    int             color_tail;
+    int             color_apple;
+    int             color_back;
 
     //a supprimer
     std::string     name;

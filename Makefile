@@ -24,9 +24,9 @@ OBJSDL = $(SRCLIBSDL:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	clang++ -o $(NAME) $(OBJ) -ldl
-	clang++ -o $(NAMELIBTEST) $(SRCLIBTEST) -shared -fPIC -ldl -lncurses
-	clang++ -o $(NAMELIBSDL) $(SRCLIBSDL) -shared -fPIC -ldl -lncurses
+	g++ -o $(NAME) $(OBJ) -ldl
+	g++ -o $(NAMELIBTEST) $(SRCLIBTEST) -shared -fPIC -ldl -lncurses
+	g++ -o $(NAMELIBSDL) $(SRCLIBSDL) -shared -fPIC -ldl -lSDL
 
 clean:
 	rm -rf $(OBJ)
