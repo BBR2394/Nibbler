@@ -201,7 +201,7 @@ void	Nibbler::prepareTheGame(char *name, int x, int y)
 	_snake.push_back(new Objet((x/2) - 1, y/2, BODY));
 	_snake.push_back(new Objet((x/2) - 2, y/2, BODY));
 	_snake.push_back(new Objet((x/2) - 3, y/2, TAIL));
-	_food.push_front(new Objet(20, 10, FOOD));
+	_food.push_front(new Objet(x/3, y/3, FOOD));
 }
 
 void Nibbler::endGame()
