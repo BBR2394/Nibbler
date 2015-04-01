@@ -5,7 +5,7 @@
 // Login   <schric_a@epitech.eu>
 //
 // Started on  Mon Mar 30 14:44:26 2015 Adrien Schricke
-// Last update Wed Apr  1 16:13:02 2015 Adrien Schricke
+// Last update Wed Apr  1 17:36:47 2015 Adrien Schricke
 //
 
 #include "nibblerSDL.hh"
@@ -45,6 +45,11 @@ void NibblerSDL::createWin(int x, int y)
 
 int NibblerSDL::init(int x, int y)
 {
+    if (x > 80 || y > 40)
+        {
+            std::cout << "Error : With " << x << " and " << y << " the window would be too large" << std::endl;
+            return (-1);
+        }
     this->x = x;
     this->y = y;
     this->space = 20;
@@ -63,9 +68,9 @@ int NibblerSDL::init(int x, int y)
 
 void NibblerSDL::stop()
 {
-    //SDL_DestroyWindow(this->win);
     SDL_Quit();
 }
+    //SDL_DestroyWindow(this->win);
 
 t_dir NibblerSDL::getEvent()
 {
@@ -116,11 +121,11 @@ int NibblerSDL::refreshScreen()
                 pos.y = this->oy + (this->space * j + this->ox * j);
                 SDL_FillRect(pion, NULL, this->color_back);
                 SDL_BlitSurface(pion, NULL, this->win, &pos);
-                SDL_Flip(this->win);
                 SDL_FreeSurface(pion);
             }
         }
         init = false;
+        SDL_Flip(this->win);
     }
     return (0);
 }
@@ -156,7 +161,6 @@ int NibblerSDL::drawGame(int x, int y, t_type tp)
         SDL_FillRect(pion, NULL, this->color_apple);
     SDL_BlitSurface(pion, NULL, this->win, &pos);
     SDL_BlitSurface(gomme, NULL, this->win, &pgom);
-
     SDL_Flip(this->win);
     SDL_FreeSurface(pion);
     SDL_FreeSurface(gomme);
@@ -171,5 +175,5 @@ int NibblerSDL::timeToWait(int ms)
 
 void NibblerSDL::printSomething(const std::string & str)
 {
-
+    (void)str;
 }
