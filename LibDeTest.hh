@@ -37,13 +37,13 @@ private:
   int _cursX, _cursY;
 public:
   std::string const & getName() const;
-  void init(int , int );
+  int init(int , int );
   void stop();
   t_dir getEvent();
   int refreshScreen();
   int drawGame(int , int, t_type);
   void moveSnake();
-  void createWin(int , int );
+  int createWin(int , int );
   int timeToWait(int);
 
   void printSomething(const std::string & str);

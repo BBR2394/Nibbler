@@ -32,21 +32,24 @@ LibDeTest::~LibDeTest()
 ** y -> lines
 */
 
-void LibDeTest::createWin(int x, int y)
+int LibDeTest::createWin(int x, int y)
 {
   _win = newwin(y, x, 0, 0);
-  if (_win == NULL)
-    throw ("problem when create the window");
+  //if (_win == NULL)
+    //throw ("problem when create the window");
   box(_win, 0, 0);
   wrefresh(_win);
   refresh();
 }
 
-void LibDeTest::init(int x, int y)
+int LibDeTest::init(int x, int y)
 {
   std::cout << "initialisation de la lib de test avec ncurses" << std::endl;
   initscr();
   getmaxyx(stdscr, _rowMax, _colMax);
+  if (x > _colMax || y > _rowMax)
+    return (-1);
+ //throw ExceptLoad("window to high for the term window");
   std::cout << "les ligne du terminal" << _rowMax << "les colonne " << _colMax << std::endl;
   //printw("les ligne %d et les colone %d\n", _rowMax, _colMax);
   cbreak(); /*ctrl-C not caught */
