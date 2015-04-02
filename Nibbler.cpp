@@ -184,7 +184,11 @@ void	Nibbler::loadLibrary(char *name)
 	_lib = loader->getInstance(name);
 	if (_lib == NULL)
   		throw ExceptLoad("problem when Loading Shared Library");
-	_lib->init(_x, _y);	
+	if (_lib->init(_x, _y) == -1)
+	{
+		_lib->stop();
+		throw ExceptLoad("problem when i initialize the Shared Library");;	
+	}
 }
 
 void	Nibbler::prepareTheGame(char *name, int x, int y)

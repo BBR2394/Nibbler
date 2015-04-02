@@ -35,11 +35,12 @@ LibDeTest::~LibDeTest()
 int LibDeTest::createWin(int x, int y)
 {
   _win = newwin(y, x, 0, 0);
-  //if (_win == NULL)
-    //throw ("problem when create the window");
+  if (_win == NULL)
+    return -1;    
   box(_win, 0, 0);
   wrefresh(_win);
   refresh();
+  return 0;
 }
 
 int LibDeTest::init(int x, int y)
@@ -57,9 +58,11 @@ int LibDeTest::init(int x, int y)
   noecho(); /*dont print the char when press */
   refresh();
   keypad(stdscr, TRUE);
-  this->createWin(x, y);
+  if (this->createWin(x, y) == -1)
+    return -1;
   mvwprintw(stdscr, _cursY, _cursX, "BONJOUR !!");
   getch();
+  return 0;
 }
 
 void LibDeTest::stop()
