@@ -121,6 +121,9 @@ int LibDeTest::drawGame(int x, int y, t_type tp)
     mvwprintw(_win, y+1, x+1, CHARTAIL);
   else
     mvwprintw(_win, y+1, x+1, "5");
+  //_win, y, x, char
+  //mvwprintw(_win, 1, 8, "7");
+  //mvwprintw(_win, 13, 12, "T");
   wrefresh(_win);
 	return (0);
 }
