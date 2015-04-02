@@ -5,7 +5,7 @@
 ## Login   <schric_a@epitech.eu>
 ##
 ## Started on  Wed Apr  1 16:41:07 2015 Adrien Schricke
-## Last update Wed Apr  1 16:41:48 2015 Adrien Schricke
+##Last update Thu Apr  2 08:54:04 2015 Bertrand-Rapello Baptiste
 ##
 
 SRC =	main.cpp \
@@ -16,11 +16,11 @@ SRC =	main.cpp \
 
 NAME = nibbler
 
-SRCLIBTEST = LibDeTest.cpp
+SRCLIBNCURSES = LibNCurses.cpp
 
 SRCLIBSDL = nibblerSDL/nibblerSDL.cpp
 
-NAMELIBTEST = lib_de_test.so
+NAMELIBNCURSES = lib_ncurses.so
 
 NAMELIBSDL = lib_sdl.so
 
@@ -28,14 +28,14 @@ CFLAGS = -W -Wall -Wextra
 
 OBJ = $(SRC:.cpp=.o)
 
-OBJLIB = $(SRCLIBDETEST:.cpp=.o)
+OBJLIB = $(SRCLIBNCURSES:.cpp=.o)
 OBJSDL = $(SRCLIBSDL:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	g++ -o $(NAME) $(OBJ) $(CFLAGS) -ldl
-	g++ -o $(NAMELIBTEST) $(SRCLIBTEST) $(CFLAGS) -shared -fPIC -ldl -lncurses
+	g++ -o $(NAMELIBNCURSES) $(SRCLIBNCURSES) $(CFLAGS) -shared -fPIC -ldl -lncurses
 	g++ -o $(NAMELIBSDL) $(SRCLIBSDL) $(CFLAGS) -shared -fPIC -ldl -lSDL
 
 clean:
@@ -43,7 +43,7 @@ clean:
 
 fclean: clean
 	rm -rf $(NAME)
-	rm -rf $(NAMELIBTEST)
+	rm -rf $(NAMELIBNCURSES)
 	rm -rf $(NAMELIBSDL)
 
 re: fclean all

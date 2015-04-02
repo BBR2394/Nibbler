@@ -139,10 +139,11 @@ int Nibbler::moveSnake(t_dir dir)
 	if (this->checkColWithHimself() == 1)
 		return 1;
 
-	if (tmp1->getPosY() > _y || tmp1->getPosY() < 0)
+	if (tmp1->getPosY() > _y-1 || tmp1->getPosY() < 0)
 		return 1;
-	else if (tmp1->getPosX() > _x || tmp1->getPosX() < 0)
+	else if (tmp1->getPosX() > _x-1 || tmp1->getPosX() < 0)
 		return 1;
+	
 	return (0);
 	
 }
