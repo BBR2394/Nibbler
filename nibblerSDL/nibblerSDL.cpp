@@ -5,7 +5,7 @@
 // Login   <schric_a@epitech.eu>
 //
 // Started on  Mon Mar 30 14:44:26 2015 Adrien Schricke
-// Last update Wed Apr  1 17:36:47 2015 Adrien Schricke
+// Last update Thu Apr  2 13:35:05 2015 Adrien Schricke
 //
 
 #include "nibblerSDL.hh"
@@ -169,7 +169,7 @@ int NibblerSDL::drawGame(int x, int y, t_type tp)
 
 int NibblerSDL::timeToWait(int ms)
 {
-    usleep(ms);
+    usleep(ms * 3);
     return (0);
 }
 
