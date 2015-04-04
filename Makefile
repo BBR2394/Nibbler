@@ -5,7 +5,7 @@
 ## Login   <schric_a@epitech.eu>
 ##
 ## Started on  Wed Apr  1 16:41:07 2015 Adrien Schricke
-## Last update Sat Apr  4 04:07:35 2015 Bertrand-Rapello Baptiste
+## Last update Sat Apr  4 14:10:32 2015 Adrien Schricke
 ##
 
 SRC =	main.cpp \
@@ -36,7 +36,7 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	g++ -o $(NAME) $(OBJ) $(CFLAGS) -ldl
 	g++ -o $(NAMELIBNCURSES) $(SRCLIBNCURSES) $(CFLAGS) -shared -fPIC -ldl -lncurses
-	g++ -o $(NAMELIBSDL) $(SRCLIBSDL) $(CFLAGS) -shared -fPIC -ldl -lSDL
+	g++ -o $(NAMELIBSDL) $(SRCLIBSDL) $(CFLAGS) -shared -fPIC -ldl -lSDL -lSDL_ttf
 
 clean:
 	rm -rf $(OBJ)

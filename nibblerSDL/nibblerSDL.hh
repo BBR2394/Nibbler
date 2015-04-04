@@ -5,7 +5,7 @@
 // Login   <schric_a@epitech.eu>
 //
 // Started on  Mon Mar 30 14:46:25 2015 Adrien Schricke
-// Last update Fri Apr  3 16:44:31 2015 Adrien Schricke
+// Last update Sat Apr  4 15:38:56 2015 Adrien Schricke
 //
 
 #ifndef         NIBBLERSDL_HH_
@@ -14,6 +14,8 @@
 #include        <SDL/SDL.h>
 #include        <SDL/SDL_ttf.h>
 #include        <unistd.h>
+#include        <iostream>
+#include        <sstream>
 
 #include        "../IDisplayModule.hh"
 
@@ -25,6 +27,11 @@ public:
 
 private:
     SDL_Surface     *win;
+    TTF_Font        *font;
+    SDL_Color       text_color;
+    int             sizex;
+    int             sizey;
+    int             sizefont;
     int             x;
     int             y;
     int             space;
@@ -37,7 +44,6 @@ private:
     int             color_tail;
     int             color_apple;
     int             color_back;
-
     //a supprimer
     std::string     name;
 

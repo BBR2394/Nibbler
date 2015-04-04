@@ -5,7 +5,7 @@
 // Login   <schric_a@epitech.eu>
 //
 // Started on  Mon Mar 30 14:44:26 2015 Adrien Schricke
-// Last update Thu Apr  2 13:35:05 2015 Adrien Schricke
+// Last update Sat Apr  4 16:00:35 2015 Adrien Schricke
 //
 
 #include "nibblerSDL.hh"
@@ -35,9 +35,14 @@ std::string const & NibblerSDL::getName() const
 void NibblerSDL::createWin(int x, int y)
 {
     SDL_Init(SDL_INIT_VIDEO);
-    this->win = SDL_SetVideoMode(x * (this->space + this->ox) + this->ox, y * (this->space + this->oy) + this->oy, 32, SDL_HWSURFACE);
+    this->sizex = x * (this->space + this->ox) + this->ox;
+    this->sizey = y * (this->space + this->oy) + this->oy;
+    this->win = SDL_SetVideoMode(this->sizex, this->sizey, 32, SDL_HWSURFACE | SDL_DOUBLEBUF);
     if (this->win == NULL)
       throw(SDL_GetError());
+    if(TTF_Init() == -1)
+      throw(TTF_GetError());
+    this->font = TTF_OpenFont("KeepCalm.ttf", this->sizefont);
     SDL_WM_SetCaption("Nibbler - lib SDL", NULL);
     SDL_FillRect(this->win, NULL, SDL_MapRGB((this->win)->format, 0, 0, 0));
     SDL_Flip(this->win);
@@ -57,7 +62,11 @@ int NibblerSDL::init(int x, int y)
     this->oy = 1;
     this->last_x = -1;
     this->last_y = -1;
+    this->sizefont = 30;
     this->createWin(x, y);
+    this->text_color.r = 50;
+    this->text_color.g = 50;
+    this->text_color.b = 50;
     this->color_head = SDL_MapRGB(this->win->format, 150, 150, 250);
     this->color_body = SDL_MapRGB(this->win->format, 150, 0, 250);
     this->color_tail = SDL_MapRGB(this->win->format, 0, 0, 250);
@@ -68,6 +77,8 @@ int NibblerSDL::init(int x, int y)
 
 void NibblerSDL::stop()
 {
+    TTF_CloseFont(this->font);
+    TTF_Quit();
     SDL_Quit();
 }
     //SDL_DestroyWindow(this->win);
@@ -175,7 +186,39 @@ int NibblerSDL::timeToWait(int ms)
 
 int NibblerSDL::printSomething(t_texte msgToDisplay, int scr)
 {
-    (void)msgToDisplay;
-    (void)scr;
+    SDL_Surface *text;
+    SDL_Rect    position;
+    std::string score;
+    std::stringstream convert;
+    SDL_Event       event;
+
+    if (msgToDisplay == GO)
+    {
+        text = TTF_RenderText_Blended(this->font, "GAME OVER", this->text_color);
+        position.x = this->sizey / 2 - ((this->sizefont * 2/3) * 10) / 2;
+        position.y = this->sizex / 2 - this->sizefont / 2;
+        SDL_BlitSurface(text, NULL, this->win, &position);
+        SDL_Flip(this->win);
+        SDL_FreeSurface(text);
+        return (0);
+    }
+    else if (msgToDisplay == SCR)
+    {
+        convert << scr;
+        score = "Score : " + convert.str();
+        text = TTF_RenderText_Blended(this->font,score.c_str(), this->text_color);
+        position.x = this->sizey / 2 - ((this->sizefont * 2/3) * score.length()) / 2;
+        position.y = this->sizex / 2 - this->sizefont / 2 + this->sizefont;
+        SDL_BlitSurface(text, NULL, this->win, &position);
+        SDL_Flip(this->win);
+        SDL_WaitEvent(&event);
+        SDL_FreeSurface(text);
+        return (0);
+    }
+    else if (msgToDisplay == HI)
+    {
+        std::cout << "Welcome!" << std::endl;
+        return (0);
+    }
     return 1;
 }
