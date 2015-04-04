@@ -35,6 +35,7 @@ LibNCurses::~LibNCurses()
 int LibNCurses::createWin(int x, int y)
 {
   _win = newwin(y+2, x+2, 0, 0);
+
   if (_win == NULL)
     return -1;    
   box(_win, 0, 0);
@@ -63,9 +64,6 @@ int LibNCurses::init(int x, int y)
   if (this->createWin(x, y) == -1)
     return -1;
 
-  mvwprintw(_win, 1, 1, "press\n");
-  mvwprintw(_win, 2, 1, "a touch\n");
-  mvwprintw(_win, 3, 1, "to start\n");
   return 0;
 }
 
@@ -146,9 +144,15 @@ int LibNCurses::timeToWait(int sec)
 	return (0);
 }
 
-void LibNCurses::printSomething(const std::string & str)
+int LibNCurses::printSomething(t_texte msgToDisplay, int scr)
 {
-  mvwprintw(stdscr, _cursY++, _cursX, str.c_str());
-  if (_cursY > _rowMax-2)
-    _cursY =  _rowMax - 1;
+  if (msgToDisplay == HI)
+  {
+    mvwprintw(_win, 1, 1, "press\n");
+    mvwprintw(_win, 2, 1, "a touch\n");
+    mvwprintw(_win, 3, 1, "to start\n");
+    return 0;
+  }
+  else 
+    return 1;
 }

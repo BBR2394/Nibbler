@@ -26,6 +26,13 @@ typedef enum 					e_dir
 	END
 }								t_dir;
 
+typedef enum          e_texte
+{
+  HI,
+  GO,
+  SCR
+}                     t_texte;
+
 class 							IDisplayModule
 {
 public:
@@ -38,6 +45,6 @@ public:
   virtual int drawGame(int, int, t_type) = 0;
   virtual int timeToWait(int) = 0;
 
-  virtual void printSomething(const std::string & str) = 0;
+  virtual int printSomething(t_texte , int) = 0;
 };
 #endif

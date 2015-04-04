@@ -33,8 +33,9 @@ private:
   int _rowMax;
   int _colMax;
   int _cmdPress;
-
+  int _xWin, _yWin;
   int _cursX, _cursY;
+
 public:
   std::string const & getName() const;
   int init(int , int );
@@ -45,8 +46,7 @@ public:
   void moveSnake();
   int createWin(int , int );
   int timeToWait(int);
-
-  void printSomething(const std::string & str);
+  int printSomething(t_texte , int );
 };
 
 #endif

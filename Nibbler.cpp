@@ -55,7 +55,7 @@ int Nibbler::checkColWithFoodBis(int x, int y)
 		tmp = *itSnake;
 		if (tmp->getPosX() == x && tmp->getPosY() == y)
 		{
-			_lib->printSomething("position de la nourriture change !");
+			//_lib->printSomething("position de la nourriture change !");
 			return 1;
 		}
 		else
@@ -87,6 +87,7 @@ int Nibbler::checkColWithFood()
 			tmp2 = newY;
 			_food.push_front(new Objet(newX, newY, FOOD));
 			_score += 1;
+			/*
 			str += "coordonée : " ;
 			std::ostringstream convertX;
 			std::ostringstream convertY;
@@ -95,7 +96,7 @@ int Nibbler::checkColWithFood()
 			str += convertX.str();
 			str += "   " ;
 			str += convertY.str();
-			_lib->printSomething(str);
+			_lib->printSomething(str);*/
 			return 1;
 		}
 		else
@@ -177,6 +178,7 @@ int Nibbler::playTheGame()
 	int rtrMove;
 
 	rtrMove = 0;
+	_lib->printSomething(HI, 0);
   while (rtrMove != 1)
     {
     	this->callDraw();

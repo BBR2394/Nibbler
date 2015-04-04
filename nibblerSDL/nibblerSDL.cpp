@@ -173,7 +173,9 @@ int NibblerSDL::timeToWait(int ms)
     return (0);
 }
 
-void NibblerSDL::printSomething(const std::string & str)
+int NibblerSDL::printSomething(t_texte msgToDisplay, int scr)
 {
-    (void)str;
+    (void)msgToDisplay;
+    (void)scr;
+    return 1;
 }

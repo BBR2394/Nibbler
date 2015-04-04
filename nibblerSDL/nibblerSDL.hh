@@ -53,6 +53,6 @@ public:
     void createWin(int , int );
     int timeToWait(int);
 
-    void printSomething(const std::string & str);
+    int printSomething(t_texte , int );
 };
 #endif
