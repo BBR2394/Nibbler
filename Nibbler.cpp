@@ -14,7 +14,7 @@
 #include <sstream>
 #include "Nibbler.hh"
 
-Nibbler::Nibbler() : _pts(0), _eaten(0)
+Nibbler::Nibbler() : _pts(0), _eaten(0), _score(0)
 {
 
 }
@@ -44,6 +44,26 @@ void Nibbler::callDraw()
 	}
 }
 
+int Nibbler::checkColWithFoodBis(int x, int y)
+{
+	std::list<Objet*>::iterator itSnake = _snake.begin();
+	Objet *tmp;
+
+	itSnake++;
+	while (itSnake != _snake.end())
+	{
+		tmp = *itSnake;
+		if (tmp->getPosX() == x && tmp->getPosY() == y)
+		{
+			_lib->printSomething("position de la nourriture change !");
+			return 1;
+		}
+		else
+			itSnake++;
+	}
+	return 0;
+}
+
 int Nibbler::checkColWithFood()
 {
 	int newX, newY;
@@ -58,11 +78,15 @@ int Nibbler::checkColWithFood()
 		{
 			_eaten++;
 			_food.erase(itFood);
+			do
+			{
 			newX = (rand() % (_x-2)) ;
 			newY = (rand() % (_y-2)) ;
+			} while (checkColWithFoodBis(newX, newY) == 1);
 			tmp1 = newX;
 			tmp2 = newY;
 			_food.push_front(new Objet(newX, newY, FOOD));
+			_score += 1;
 			str += "coordonée : " ;
 			std::ostringstream convertX;
 			std::ostringstream convertY;
@@ -76,11 +100,8 @@ int Nibbler::checkColWithFood()
 		}
 		else
 			itFood++;
-		//_eaten--;
 	}
-
 	return 0;
-	//_eaten = 42;
 }
 
 int Nibbler::checkColWithHimself()
@@ -168,13 +189,11 @@ int Nibbler::playTheGame()
 		else
 			staticRtr = lastRtr;
 		rtrMove = this->moveSnake(lastRtr);
-
-		_lib->timeToWait(50000);
+		/* 100 miliseconde c'est bien */
+		_lib->timeToWait(100);
       	_lib->refreshScreen();
     }
 	_lib->stop();
-	std::cout << "mange : " << _eaten << std::endl;
-	std::cout << "les coordonnée" << tmp1 << " " << tmp2 << std::endl;
 }
 
 void	Nibbler::loadLibrary(char *name)
@@ -210,4 +229,6 @@ void Nibbler::endGame()
 	while (!_snake.empty())
     	_snake.pop_front();
     _food.pop_front();
+
+    std::cout << "le score : " << _score << std::endl;
 }

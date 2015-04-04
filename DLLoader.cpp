@@ -26,9 +26,12 @@ IDisplayModule *DLLoader::getInstance(char *name)
 	void *lib;
 	IDisplayModule *(*fn_lib)();
 	char *rtr = NULL;
+	std::string nameBis;
 
+	nameBis = "./";
+	nameBis += name;
 	fn_lib = NULL;
-	lib = dlopen(name, RTLD_LAZY | RTLD_LOCAL);
+	lib = dlopen(nameBis.c_str(), RTLD_LAZY | RTLD_LOCAL);
 	if (lib == NULL)
 		throw ExceptLoad("impossible to open the shared library");
 
@@ -37,7 +40,7 @@ IDisplayModule *DLLoader::getInstance(char *name)
 	if (rtr != NULL)
 	  std::cout << rtr << std::endl;
 	if (fn_lib == NULL)
-		throw ExceptLoad("problem when Loading Shared Library n°2");
+		throw ExceptLoad("problem when Loading Shared Library in DLLoader");
 	_obj = fn_lib();
 	return _obj;
 }

@@ -47,13 +47,12 @@ int LibNCurses::createWin(int x, int y)
 
 int LibNCurses::init(int x, int y)
 {
-  std::cout << "initialisation de la lib de test avec ncurses" << std::endl;
-  initscr();
+  //std::cout << "initialisation de la lib de test avec ncurses" << std::endl;
+  if (initscr() == NULL)
+    return -1;
   getmaxyx(stdscr, _rowMax, _colMax);
   if (x > _colMax || y > _rowMax)
     return (-1);
- //throw ExceptLoad("window to high for the term window");
-  std::cout << "les ligne du terminal" << _rowMax << "les colonne " << _colMax << std::endl;
   //printw("les ligne %d et les colone %d\n", _rowMax, _colMax);
   cbreak(); /*ctrl-C not caught */
   //a remettre
@@ -67,12 +66,16 @@ int LibNCurses::init(int x, int y)
   mvwprintw(_win, 1, 1, "press\n");
   mvwprintw(_win, 2, 1, "a touch\n");
   mvwprintw(_win, 3, 1, "to start\n");
-  getch();
   return 0;
 }
 
 void LibNCurses::stop()
 {
+  mvwprintw(_win, 1, 1, "GAME\n");
+  mvwprintw(_win, 2, 1, "OVER\n");
+  wrefresh(_win);
+  timeout(-1);
+  getch();
   echo();
   curs_set(1);
   delwin(_win);
@@ -102,17 +105,12 @@ t_dir LibNCurses::getEvent()
     return DOWN;
   else if (ch == 27)
     {
+
       this->stop();
-        //a enlever
-      /*exit(0);*/
       return END;
     }
   else
    return NOTHING;
-
-  //ch = getch();
-  //refresh();
-  //return ch;
 }
 
 int LibNCurses::refreshScreen()
@@ -143,8 +141,8 @@ int LibNCurses::drawGame(int x, int y, t_type tp)
 
 int LibNCurses::timeToWait(int sec)
 {
-
-	timeout(sec/1000);
+  /* en miliseconde */
+	timeout(sec);
 	return (0);
 }
 

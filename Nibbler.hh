@@ -26,6 +26,7 @@ public:
 private:
 	int _pts;
 	int _eaten;
+	int _score;
 	IDisplayModule *_lib;
 	std::list<Objet*> _snake;
 	std::list<Objet*> _food;
@@ -43,7 +44,8 @@ public:
 	int moveSnake(t_dir);
 	void endGame();
 	int checkColWithFood();
-	int checkColWithHimself()
-;};
+	int checkColWithFoodBis(int , int );
+	int checkColWithHimself();
+};
 
 #endif

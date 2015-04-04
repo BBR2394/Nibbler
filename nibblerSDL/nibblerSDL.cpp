@@ -169,7 +169,7 @@ int NibblerSDL::drawGame(int x, int y, t_type tp)
 
 int NibblerSDL::timeToWait(int ms)
 {
-    usleep(ms * 3);
+    SDL_Delay(ms);
     return (0);
 }
 

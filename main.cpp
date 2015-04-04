@@ -19,7 +19,7 @@ int	main(int ac, char **av)
   
   if (ac <= 1)
   {
-    std::cout << "no argument " << std::endl;
+    std::cout << "no argument..\n\tusage: \t./nibbler heigth weight lib_nibbler_XXX.so" << std::endl;
     return (-1);
   }
 
