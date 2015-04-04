@@ -5,13 +5,14 @@
 // Login   <schric_a@epitech.eu>
 //
 // Started on  Mon Mar 30 14:46:25 2015 Adrien Schricke
-// Last update Wed Apr  1 16:09:10 2015 Adrien Schricke
+// Last update Fri Apr  3 16:44:31 2015 Adrien Schricke
 //
 
 #ifndef         NIBBLERSDL_HH_
 # define        NIBBLERSDL_HH_
 
 #include        <SDL/SDL.h>
+#include        <SDL/SDL_ttf.h>
 #include        <unistd.h>
 
 #include        "../IDisplayModule.hh"
@@ -52,7 +53,6 @@ public:
     void moveSnake();
     void createWin(int , int );
     int timeToWait(int);
-
     int printSomething(t_texte , int );
 };
 #endif
