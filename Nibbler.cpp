@@ -178,23 +178,32 @@ int Nibbler::playTheGame()
 	int rtrMove;
 
 	rtrMove = 0;
-	_lib->printSomething(HI, 0);
+	if (_lib->printSomething(HI, 0) == 1)
+		std::cout << "Game Start : Press a touch to start" << std::endl;
   while (rtrMove != 1)
     {
     	this->callDraw();
       	lastRtr = _lib->getEvent();
       	if (lastRtr == END)
-      		return 1;
-		c++;
-		if (lastRtr == NOTHING)
-			lastRtr = staticRtr;
-		else
-			staticRtr = lastRtr;
-		rtrMove = this->moveSnake(lastRtr);
-		/* 100 miliseconde c'est bien */
-		_lib->timeToWait(_timeOut-(_score*3));
-      	_lib->refreshScreen();
+      		rtrMove = 1;
+      	else
+      	{
+			c++;
+			if (lastRtr == NOTHING)
+				lastRtr = staticRtr;
+			else
+				staticRtr = lastRtr;
+			rtrMove = this->moveSnake(lastRtr);
+			/* 100 miliseconde c'est bien */
+			_lib->timeToWait(_timeOut-(_score*3));
+      		_lib->refreshScreen();
+      	}
     }
+    if (_lib->printSomething(GO, 0) == 1)
+    	std::cout << "GAME OVER" << std::endl;
+    _lib->refreshScreen();
+    if (_lib->printSomething(SCR, _score) == 1)
+    	std::cout << "Score : " << _score << std::endl;
 	_lib->stop();
 }
 
@@ -209,7 +218,7 @@ void	Nibbler::loadLibrary(char *name)
 	if (_lib->init(_x, _y) == -1)
 	{
 		_lib->stop();
-		throw ExceptLoad("problem when i initialize the Shared Library");;	
+		throw ExceptLoad("problem when I initialize the Shared Library");;	
 	}
 }
 
@@ -218,7 +227,7 @@ void	Nibbler::prepareTheGame(char *name, int x, int y)
 	_x = x;
 	_y = y;
 	this->loadLibrary(name);
-
+	srand(time(NULL));
 	_snake.push_front(new Objet(x/2, y/2, HEAD));
 	_snake.push_back(new Objet((x/2) - 1, y/2, BODY));
 	_snake.push_back(new Objet((x/2) - 2, y/2, BODY));
@@ -231,6 +240,4 @@ void Nibbler::endGame()
 	while (!_snake.empty())
     	_snake.pop_front();
     _food.pop_front();
-
-    std::cout << "le score : " << _score << std::endl;
 }
