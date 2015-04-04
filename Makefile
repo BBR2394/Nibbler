@@ -5,7 +5,7 @@
 ## Login   <schric_a@epitech.eu>
 ##
 ## Started on  Wed Apr  1 16:41:07 2015 Adrien Schricke
-##Last update Thu Apr  2 08:54:04 2015 Bertrand-Rapello Baptiste
+## Last update Sat Apr  4 04:07:35 2015 Bertrand-Rapello Baptiste
 ##
 
 SRC =	main.cpp \
@@ -20,9 +20,9 @@ SRCLIBNCURSES = LibNCurses.cpp
 
 SRCLIBSDL = nibblerSDL/nibblerSDL.cpp
 
-NAMELIBNCURSES = lib_ncurses.so
+NAMELIBNCURSES = lib_nibbler_ncurses.so
 
-NAMELIBSDL = lib_sdl.so
+NAMELIBSDL = lib_nibbler_sdl.so
 
 CFLAGS = -W -Wall -Wextra
 

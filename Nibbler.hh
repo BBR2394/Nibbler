@@ -27,6 +27,7 @@ private:
 	int _pts;
 	int _eaten;
 	int _score;
+	int _timeOut;
 	IDisplayModule *_lib;
 	std::list<Objet*> _snake;
 	std::list<Objet*> _food;

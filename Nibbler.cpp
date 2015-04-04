@@ -14,7 +14,7 @@
 #include <sstream>
 #include "Nibbler.hh"
 
-Nibbler::Nibbler() : _pts(0), _eaten(0), _score(0)
+Nibbler::Nibbler() : _pts(0), _eaten(0), _score(0), _timeOut(100)
 {
 
 }
@@ -190,7 +190,7 @@ int Nibbler::playTheGame()
 			staticRtr = lastRtr;
 		rtrMove = this->moveSnake(lastRtr);
 		/* 100 miliseconde c'est bien */
-		_lib->timeToWait(100);
+		_lib->timeToWait(_timeOut-(_score*3));
       	_lib->refreshScreen();
     }
 	_lib->stop();
