@@ -178,7 +178,8 @@ int Nibbler::playTheGame()
 	int rtrMove;
 
 	rtrMove = 0;
-	_lib->printSomething(HI, 0);
+	if (_lib->printSomething(HI, 0) == 1)
+		std::cout << "Game Start : Press a touch to start" << std::endl;
   while (rtrMove != 1)
     {
     	this->callDraw();
@@ -216,8 +217,6 @@ void	Nibbler::loadLibrary(char *name)
   		throw ExceptLoad("problem when Loading Shared Library");
 	if (_lib->init(_x, _y) == -1)
 	{
-		_lib->printSomething(GO, 0);
-    	_lib->printSomething(SCR, _score);
 		_lib->stop();
 		throw ExceptLoad("problem when I initialize the Shared Library");;	
 	}
