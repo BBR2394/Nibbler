@@ -69,11 +69,6 @@ int LibNCurses::init(int x, int y)
 
 void LibNCurses::stop()
 {
-  mvwprintw(_win, 1, 1, "GAME\n");
-  mvwprintw(_win, 2, 1, "OVER\n");
-  wrefresh(_win);
-  timeout(-1);
-  getch();
   echo();
   curs_set(1);
   delwin(_win);
@@ -102,11 +97,7 @@ t_dir LibNCurses::getEvent()
   else if (ch == 259)
     return DOWN;
   else if (ch == 27)
-    {
-
-      this->stop();
-      return END;
-    }
+    return END;
   else
    return NOTHING;
 }
@@ -151,6 +142,23 @@ int LibNCurses::printSomething(t_texte msgToDisplay, int scr)
     mvwprintw(_win, 1, 1, "press\n");
     mvwprintw(_win, 2, 1, "a touch\n");
     mvwprintw(_win, 3, 1, "to start\n");
+    wrefresh(_win);
+    return 0;
+  }
+  else if (msgToDisplay == GO)
+  {
+    timeout(-1);
+    mvwprintw(_win, 1, 1, "GAME\n");
+    mvwprintw(_win, 2, 1, "OVER\n");
+    wrefresh(_win);
+    getch();
+    return 0;
+  }
+  else if (msgToDisplay == SCR)
+  {
+    mvwprintw(_win, 1, 1, "Score\n  %d", scr);
+    wrefresh(_win);
+    getch();
     return 0;
   }
   else 
