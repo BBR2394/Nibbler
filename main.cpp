@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 // 
 // Started on  Mon Mar 16 16:01:28 2015 Bertrand-Rapello Baptiste
-// Last update Mon Mar 16 17:19:26 2015 Bertrand-Rapello Baptiste
+// Last update Sun Apr  5 11:23:45 2015 Bertrand-Rapello Baptiste
 //
 
 #include <iostream>
@@ -44,7 +44,7 @@ int	main(int ac, char **av)
   }
 
   try
-      {
+    {
       nib.prepareTheGame(av[3], x, y);
       nib.playTheGame();
       nib.endGame();
@@ -56,6 +56,6 @@ int	main(int ac, char **av)
       std::cout << "An exception \"ExceptLoad\" has been thrown :\n     -> " << e.getComponent() << std::endl;
       return -1;
     }
-
+  
   return 0;
 }
