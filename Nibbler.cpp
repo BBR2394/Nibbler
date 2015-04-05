@@ -14,7 +14,7 @@
 #include <sstream>
 #include "Nibbler.hh"
 
-Nibbler::Nibbler() : _pts(0), _eaten(0), _score(0), _timeOut(100)
+Nibbler::Nibbler() : _pts(0), _eaten(0), _score(0), _timeOut(100), _actualDir(RIGHT)
 {
 
 }
@@ -170,10 +170,53 @@ int Nibbler::moveSnake(t_dir dir)
 	
 }
 
+t_dir Nibbler::changeDir(t_dir direction, t_dir touch)
+{
+	if (touch == LEFT)
+	{
+		switch (direction)
+		{
+			case UP : 
+			_actualDir = RIGHT;
+			break;
+			case RIGHT:
+			_actualDir = DOWN;
+			break;
+			case DOWN:
+			_actualDir = LEFT;
+			break;
+			case LEFT:
+			_actualDir = UP;
+			break;
+			default:
+			break;
+		}
+	}
+	else if (touch == RIGHT)
+	{
+		switch (direction)
+		{
+			case UP : 
+			_actualDir = LEFT;
+			break;
+			case LEFT :
+			_actualDir = DOWN;
+			break;
+			case DOWN : 
+			_actualDir = RIGHT;
+			break;
+			case RIGHT :
+			_actualDir = UP;
+			break;
+			default : 
+			break;
+		}
+	}
+
+}
+
 int Nibbler::playTheGame()
 {
- 	int	c = 0;
-	static t_dir staticRtr = RIGHT;
 	t_dir lastRtr;
 	int rtrMove;
 
@@ -184,16 +227,15 @@ int Nibbler::playTheGame()
     {
     	this->callDraw();
       	lastRtr = _lib->getEvent();
+
       	if (lastRtr == END)
       		rtrMove = 1;
       	else
       	{
-			c++;
-			if (lastRtr == NOTHING)
-				lastRtr = staticRtr;
-			else
-				staticRtr = lastRtr;
-			rtrMove = this->moveSnake(lastRtr);
+			//if (lastRtr == NOTHING)
+			//	lastRtr = _actualDir;
+			this->changeDir(_actualDir, lastRtr);
+			rtrMove = this->moveSnake(_actualDir);
 			/* 100 miliseconde c'est bien */
 			_lib->timeToWait(_timeOut-(_score*3));
       		_lib->refreshScreen();

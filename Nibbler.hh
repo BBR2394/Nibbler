@@ -17,6 +17,7 @@
 #include "DLLoader.hh"
 #include "ExceptionNibbler.hh"
 
+
 class Nibbler
 {
 public:
@@ -28,6 +29,7 @@ private:
 	int _eaten;
 	int _score;
 	int _timeOut;
+	t_dir _actualDir;
 	IDisplayModule *_lib;
 	std::list<Objet*> _snake;
 	std::list<Objet*> _food;
@@ -47,6 +49,7 @@ public:
 	int checkColWithFood();
 	int checkColWithFoodBis(int , int );
 	int checkColWithHimself();
+	t_dir changeDir(t_dir , t_dir);
 };
 
 #endif

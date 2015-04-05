@@ -96,6 +96,10 @@ t_dir LibNCurses::getEvent()
     return RIGHT;
   else if (ch == 259)
     return DOWN;
+  /*if (ch == 260)
+    return LEFT;
+  else if (ch == 261)
+    return RIGHT;*/
   else if (ch == 27)
     return END;
   else

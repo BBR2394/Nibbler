@@ -18,9 +18,9 @@
 
 typedef enum 					e_dir
 {
-	UP,
+	UP = 0,
+  RIGHT,
 	DOWN,
-	RIGHT,
 	LEFT,
 	NOTHING,
 	END
