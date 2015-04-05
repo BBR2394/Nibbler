@@ -17,7 +17,7 @@ int	main(int ac, char **av)
   Nibbler nib;
   int x, y;
   
-  if (ac <= 1)
+  if (ac <= 4)
   {
     std::cout << "no argument..\n\tusage: \t./nibbler heigth weight lib_nibbler_XXX.so" << std::endl;
     return (-1);
