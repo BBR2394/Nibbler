@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 //
 // Started on  Tue Mar 17 18:38:16 2015 Bertrand-Rapello Baptiste
-// Last update Thu Apr  2 08:56:32 2015 Bertrand-Rapello Baptiste
+// Last update Sun Apr  5 11:29:39 2015 Bertrand-Rapello Baptiste
 //
 
 #include "LibNCurses.hh"
@@ -48,16 +48,13 @@ int LibNCurses::createWin(int x, int y)
 
 int LibNCurses::init(int x, int y)
 {
-  //std::cout << "initialisation de la lib de test avec ncurses" << std::endl;
   if (initscr() == NULL)
     return -1;
   getmaxyx(stdscr, _rowMax, _colMax);
   if (x > _colMax || y > _rowMax)
     return (-1);
-  //printw("les ligne %d et les colone %d\n", _rowMax, _colMax);
-  cbreak(); /*ctrl-C not caught */
-  //a remettre
-  noecho(); /*dont print the char when press */
+  cbreak();
+  noecho();
   refresh();
   keypad(stdscr, TRUE);
   curs_set(0);
@@ -96,10 +93,6 @@ t_dir LibNCurses::getEvent()
     return RIGHT;
   else if (ch == 259)
     return DOWN;
-  /*if (ch == 260)
-    return LEFT;
-  else if (ch == 261)
-    return RIGHT;*/
   else if (ch == 27)
     return END;
   else
@@ -125,9 +118,6 @@ int LibNCurses::drawGame(int x, int y, t_type tp)
     mvwprintw(_win, y+1, x+1, CHARTAIL);
   else if (tp == FOOD)
     mvwprintw(_win, y+1, x+1, "5");
-  //_win, y, x, char
-  //mvwprintw(_win, 1, 8, "7");
-  //mvwprintw(_win, 13, 12, "T");
   wrefresh(_win);
 	return (0);
 }
@@ -135,8 +125,8 @@ int LibNCurses::drawGame(int x, int y, t_type tp)
 int LibNCurses::timeToWait(int sec)
 {
   /* en miliseconde */
-	timeout(sec);
-	return (0);
+  timeout(sec);
+  return (0);
 }
 
 int LibNCurses::printSomething(t_texte msgToDisplay, int scr)
