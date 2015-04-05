@@ -5,7 +5,7 @@
 // Login   <bertra_l@epitech.net>
 //
 // Started on  Tue Mar 17 18:38:42 2015 Bertrand-Rapello Baptiste
-// Last update Thu Apr  2 08:56:10 2015 Bertrand-Rapello Baptiste
+// Last update Sun Apr  5 11:20:42 2015 Bertrand-Rapello Baptiste
 //
 
 #ifndef LIBNCURSES_HH_
@@ -14,7 +14,7 @@
 #include <iostream>
 #include <ncurses.h>
 
-#include "IDisplayModule.hh"
+#include "../IDisplayModule.hh"
 
 #define CHARHEAD "$"
 #define CHARBODY "b"

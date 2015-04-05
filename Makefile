@@ -16,7 +16,7 @@ SRC =	main.cpp \
 
 NAME = nibbler
 
-SRCLIBNCURSES = LibNCurses.cpp
+SRCLIBNCURSES = nibblerNCurses/LibNCurses.cpp
 
 SRCLIBSDL = nibblerSDL/nibblerSDL.cpp
 
