@@ -24,3 +24,11 @@
 	dynamic qui elles, travaillent avec les bibliotheque graphique,
 	aucunes des fonctions d'une des bibliotheque graphiques n'est
 	appellé dans le noyau, seulement dans les bibliotheque dynamic
+
+//authors | auteurs
+-------------------------
+	-> this project was made in group by :
+	-> ce projet a été réalisé en groupe :
+	   => bertra_l (me)
+	   => schrick_a ()
+	   
