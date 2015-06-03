@@ -30,5 +30,5 @@
 	-> this project was made in group by :
 	-> ce projet a été réalisé en groupe :
 	   => bertra_l (me)
-	   => schrick_a ()
+	   => schrick_a (didishrek)
 	   
